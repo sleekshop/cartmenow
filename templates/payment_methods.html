@@ -1,0 +1,14 @@
+{% extends 'page.html' %}
+{% block content %}
+<div class="cartmenow-cart-overview">
+<span class="cartmenow-headline">{%trans%}Payment method{%endtrans%}</span>
+<br><br>
+  <div class="cartmenow-cart-item">
+  <div class="cartmenow-payment-method"><img src="https://{{host}}/img/paypal.jpg" class="cartmenow-clickable" onclick="setPayment({{payment_methods.PayPal.id}},'');"></div>
+  <div class="cartmenow-payment-method"><img src="https://{{host}}/img/sofortueberweisung.jpg" class="cartmenow-clickable" onclick="setPayment({{payment_methods.Sofortueberweisung.id}},'');"></div>
+  <div class="cartmenow-payment-method"><img src="https://{{host}}/img/creditcard.jpg" class="cartmenow-clickable" onclick="setPayment({{payment_methods.Stripe.id}},'{{payment_methods.Stripe.attributes.public_key}}');"></div>
+  <div class="cartmenow-payment-method"><img src="https://{{host}}/img/creditcard.jpg" class="cartmenow-clickable" onclick="setPayment({{payment_methods.Mollie.id}});"></div>
+  </div>
+</div>
+<br><br><br>
+{%endblock%}

@@ -1,0 +1,42 @@
+{% extends "page.html" %}
+
+{% block content %}
+
+<div class="hero fixed_large">
+		<div class="herowrapper">
+			<div class="imagewrapper">
+				<div class="image"></div>
+			</div>
+		</div>
+		<div class="headline">
+			<div class="h1 red">
+                      <h1>{{res.attributes.headline.value}}</h1>
+             </div>
+		</div>
+	</div>
+
+{% include "menu.html" %}
+
+  <!-- <nav class="pagination-nav">
+   <ul class="pagination">x
+    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+    {loop="$res.pages"}
+    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+    {/loop}
+    <li class=""><a href="#">2</a></li>
+    <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+  </ul>
+</nav>
+<div style="position:absolute;right:0px;top:10px;">
+<select class="sort-selector form-control">
+<option value="">Sortierung w&auml;hlen</option>
+<option value="price-asc">Preis aufsteigend</option>
+<option value="price-desc">Preis absteigend</option>
+<option value="name-asc">Name aufsteigend</option>
+<option value="name-desc">Name absteigend</option>
+</select>
+</div> -->
+<div class="container">
+<div class="row"><div class="col-md-12">{{res.attributes.txt.value|raw}}</div></div>
+</div>
+{% endblock %}

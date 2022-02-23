@@ -1,0 +1,92 @@
+{% extends "page-checkout-profile.html" %}
+
+{% block content %}
+<div class="hero fixed_large">
+    <div class="herowrapper">
+      <div class="imagewrapper">
+        <div class="image"></div>
+      </div>
+    </div>
+    <div class="headline">
+      <div class="h1 red">
+                      <h1>Shop</h1>
+             </div>
+    </div>
+  </div>
+
+  {% include "menu.html" %}
+
+<div class="container">
+  <div class="row">
+   <div class="col-md-12"><h1 align="center">{{res.attributes.name.value}}</h1><p align="center">{{res.attributes.description.value|raw}}</p><hr></div>
+
+   </div>
+
+  </div>
+<form method="POST" action="/add_to_cart_bundle">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>1.</h2>
+        </div>
+        <div class="col-md-8">
+          <select class="form-control bundle-select1" onchange="query_bundle(1);">
+            <option value="0">{{res.attributes.items1_caption.value}}</option>
+            {% for key, value in res.attributes.items1.value %}
+             <option value="{{ value.id }}">{{ value.attributes.bundle_txt.value }}</option>
+            {% endfor %}
+            </select>
+          </div>
+      </div>
+  </div>
+  <div class="container bundle-wait1"></div>
+  <div class="container bundle-response1">
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12"><hr></div>
+      <div class="col-md-4">
+        <h2>2.</h2>
+        </div>
+        <div class="col-md-8">
+          <select class="form-control bundle-select2  " onchange="query_bundle(2);">
+            <option value="0">{{res.attributes.items2_caption.value}}</option>
+            {% for key, value in res.attributes.items2.value %}
+             <option value="{{ value.id }}">{{ value.attributes.bundle_txt.value }}</option>
+            {% endfor %}
+            </select>
+          </div>
+      </div>
+  </div>
+  <div class="container bundle-wait2"></div>
+  <div class="container bundle-response2">
+  </div>
+<div class="container">
+  <hr>
+  <div class="prouct-div">
+    <div class="product-form-box col-md-12" style="paddin-top:30px !important;">
+      <div class="product-form">
+
+  <div class="product-prise">
+    {#{{ res.attributes.price.value|number_format(2) }}€<br><small>inkl. MwSt. zzgl. Versand</small>#}
+  </div>
+        <div class="form-btn">
+        <p class="ver-validate">{% if res.availability_label=='success' %}{%trans%}Verfügbar{%endtrans%}{% endif %}{% if  res.availability_label=='warning' %}{%trans%}Nur wenige Verfügbar{%endtrans%}{% endif %}{% if res.availability_label=='danger' %}{%trans%}Nicht verfügbar!{%endtrans%}{% endif %}</p>
+        <button style="display:none;" id="add_button" class="btn login-btn-second ml-auto" value="{%trans%}Add to cart{%endtrans%}">{%trans%}In den Warenkorb{%endtrans%}</button>
+        <input type="hidden" name="id_product" value="{{ res.id }}">
+        <input type="hidden" name="pic" value="{{ res.attributes.img1.value }}">
+        <input type="hidden" name="price" value="{{ res.attributes.price.value }}">
+        <input type="hidden" name="name" value="{{ res.attributes.name.value }}">
+        <input type="hidden" name="short_description" value="{{ res.attributes.short_description.value }}">
+        <input type="hidden" name="size_txt" value="{{ res.attributes.size.value }}">
+        <input type="hidden" name="color_txt" value="{{ res.attributes.color.value }}">
+        <input type="hidden" name="bundle" value="2" id="itemcount">
+
+    </div>
+
+    </div>
+    </div>
+    </div>
+</div>
+</form>
+  {% endblock %}

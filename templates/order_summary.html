@@ -1,0 +1,41 @@
+{% extends 'page.html' %}
+{% block content %}
+
+    <div class="cartmenow-cart-overview">
+     <span class="cartmenow-headline">{%trans%}Your cart{%endtrans%}</span>
+      {% set sum_tax=cart.delivery_costs.sum*0.19/1.19 %}
+      {%for value in cart.contents%}
+      {% set sum_tax=sum_tax+(value.sum_price*value.attributes.sys_tax/(value.attributes.sys_tax+1))%}
+      <div class="cartmenow-cart-item">
+        <div class="cartmenow-cart-item-name">{{value.name}}
+        <div class="cartmenow-cart-item-description">{{value.description}}</div>
+        </div>
+        <span class="cartmenow-cart-item-quantity">{{value.quantity}}</span>
+        <span class="cartmenow-cart-item-price">{%trans%}Price{%endtrans%}: {{ value.price|number_format(2)}}€</span>
+        <span class="cartmenow-cart-item-sumprice">{%trans%}Sum{%endtrans%}: {{ value.sum_price|number_format(2)}}€</span>
+      </div>
+      <div class="cartmenow-cart-divider">&nbsp;</div>
+    {%endfor%}
+    <div class="cartmenow-cart-footer">
+    <div class="cartmenow-cart-footer-info-delivery">{%trans%}Delivery{%endtrans%}:</div>
+    <div class="cartmenow-cart-footer-value-delivery">{{cart.delivery_costs.sum|number_format(2)}}€</div>
+    <div class="cartmenow-cart-footer-info-sum">{%trans%}Sum{%endtrans%}:</div>
+    <div class="cartmenow-cart-footer-value-sum">{{(cart.sum+cart.delivery_costs.sum)|number_format(2)}}€</div>
+    <div class="cartmenow-cart-footer-info-vat">{%trans%}Inkl. Mwst.{%endtrans%}:</div>
+    <div class="cartmenow-cart-footer-value-vat">{{sum_tax|number_format(2)}}€</div>
+    </div>
+    <div class="cartmenow-cart-divider">&nbsp;</div>
+    <div class="cartmenow-cart-item">
+    <div class="cartmenow-headline-sub">{%trans%}Your payment method{%endtrans%}: {{order.order_payment_method}}</div>
+    </div>
+    <div class="cartmenow-cart-divider">&nbsp;</div>
+    <div class="cartmenow-headline-sub">{%trans%}Your data{%endtrans%}:</div>
+    <div class="cartmenow-cart-item">
+      {{order.delivery_salutation}} {{order.delivery_firstname}} {{order.delivery_lastname}}<br>
+      {{order.delivery_street}} {{order.delivery_number}}<br>
+      {{order.delivery_zip}} {{order.delivery_city}} - {{order.delivery_country}}
+    </div>
+    <input type="hidden" name="token" id="cartmenow-input-token" value="{{token}}">
+    <p align="right"><button onclick="checkoutOrder();" class="cartmenow-clickable cartmenow-order-btn">{%trans%}Order now{%endtrans%}</button>
+</div>
+{% endblock %}

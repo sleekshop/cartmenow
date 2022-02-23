@@ -1,0 +1,24 @@
+{%extends "page.html"%}
+{%block content%}
+
+
+<div class="cartmenow-cart-overview">
+<span class="cartmenow-headline">{%trans%}Your data{%endtrans%}</span>
+<br><br>
+
+<div class="col-md-4">
+<span class="cartmenow-headline-sub">{%trans%}I am already a customer{%endtrans%}:</span>
+<span><button onclick="showLogin();" class="cartmenow-clickable cartmenow-action-btn">{%trans%}Login{%endtrans%}</button></span>
+</div><br><br>
+<div class="col-md-4">
+<span class="cartmenow-headline-sub">{%trans%}I want to create an account{%endtrans%}:</span>
+<span><button onclick="showRegister();" class="cartmenow-clickable cartmenow-action-btn">{%trans%}Register{%endtrans%}</button></span>
+</div><br><br>
+<div class="col-md-4">
+<span class="cartmenow-headline-sub">{%trans%}I want to continue as a guest{%endtrans%}:</span>
+<span><button onclick="showGuest();" class="cartmenow-clickable cartmenow-action-btn">{%trans%}Continue as guest{%endtrans%}</button></span>
+</div><br><br><br><br>
+
+</div>
+<br><br><br>
+ {%endblock%}

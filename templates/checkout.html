@@ -1,0 +1,44 @@
+{% extends 'page.html' %}
+{% block header %}
+{% endblock %}
+{% block content %}
+<div class="hero fixed_large">
+    <div class="herowrapper">
+      <div class="imagewrapper">
+        <div class="image" ></div>
+      </div>
+    </div>
+    <div class="headline">
+      <div class="h1 red">
+                      <h1>Bestellung</h1>
+             </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="col-md-12 form-btn">
+    {%if error==1%}
+    <h1>{%trans%}Etwas hat mit der Bezahlung nicht geklappt. Wir haben Ihre Bestellung dennoch erhalten{%endtrans%}</h1>
+    {%else%}
+    <h1>{%trans%}Vielen Dank für Ihre Bestellung{%endtrans%}</h1>
+    {%endif%}
+    <br><br>
+    <a href="/" class="btn login-btn-second ml-auto">Zur&uuml;ck zum Shop</a>
+    </div>
+    <script id="cartmenow-script">
+      setCookie("cartmenow_session","",1);
+      {%if res.redirect!=""%}
+      window.location.href="{{redirect|escape('js')}}";
+      {%else%}
+      var stripe = Stripe('{{token}}');
+      stripe.redirectToCheckout({
+      sessionId: '{{res.token}}'
+      }).then(function (result) {
+        alert(result.error.message);
+      });
+      {%endif%}
+    </script>
+
+  </div><br><br>
+{% endblock %}

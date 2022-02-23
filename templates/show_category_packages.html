@@ -1,0 +1,65 @@
+{% extends "page.html" %}
+
+{% block content %}
+
+<div class="hero fixed_large">
+		<div class="herowrapper">
+			<div class="imagewrapper">
+				<div class="image"></div>
+			</div>
+		</div>
+		<div class="headline">
+			<div class="h1 red">
+                      <h1>Shop</h1>
+             </div>
+		</div>
+	</div>
+
+{% include "menu.html" %}
+
+
+{% if res!=0 %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			{% for value in res.contents.byclass.teaser_txt %}
+			 <h2 align="center">{{value.attributes.headline1.value}}</h2>
+			 <h4 align="center">{{value.attributes.headline2.value}}</h4>
+			 {{value.attributes.content.value|raw}}
+			{% endfor %}
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+<div class="shope-categories">
+    <div class="container">
+        <div class="row">
+        <div class="product-categories small">
+        {% for value in res.products %}
+           <div class="col-12 col-md-4 col-lg-4">
+             <a href="{% if value.permalink!='' %}/{{ value.permalink }}{% else %}/{{ value.id }}{% endif %}" class=""><img src="{{ value.attributes.img1.value }}" width="100%"></a>
+             <p align="center"><a href="{% if value.permalink!='' %}{{ value.permalink }}{% else %}/{{ value.id }}{% endif %}" class=""><strong>{{ value.attributes.name.value }}</strong></a>{#<br>{{ value.attributes.price.value|number_format(2)}}€ (inkl. Mwst.)#}</p><br>
+           		{#<div class="first-product ">
+                     <img src="{{ value.attributes.img1.value }}">
+                     <div class="image-caption-box">
+                         <h2>{{ value.attributes.name.value }}</h2>
+                         <div class="form-btn">
+                               <p>{{ value.attributes.price.value|number_format(2)}}€</p>
+                         <a href="{% if value.permalink!='' %}{{ value.permalink }}{% else %}/{{ value.id }}{% endif %}" class="login-btn-second ml-auto">Product anzeigen</a>
+                          </div>
+                     </div>
+            	</div>#}
+        	</div>
+        {% endfor %}
+
+        </div>
+
+    </div>
+    </div>
+    </div>
+
+{% else %}
+<div class="col-md-12">Keine Produkte gefunden</div>
+{% endif %}
+{% endblock %}

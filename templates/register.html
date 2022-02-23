@@ -1,0 +1,26 @@
+{%extends "page.html"%}
+    {%block content%}
+    <div class="cartmenow-cart-overview">
+    <span class="cartmenow-headline">{%trans%}Register{%endtrans%}</span>
+    <br><br>
+    {% if error==1 %}
+    <div class="cartmenow-alert-danger">
+     <span class="cartmenow-alert-close" onclick="this.parentElement.style.display='none';">&times;</span>
+     {%trans%}The following error occured{%endtrans%}: {{error_msg}}
+     </div>
+    {% endif %}
+      <div class="cartmenow-cart-item">
+        <input type="text" class="cartmenow-input" id="cartmenow-input-email" name="email" placeholder="E-Mail" value="{{email}}">
+      </div>
+      <div class="cartmenow-cart-item">
+        <input type="password" class="cartmenow-input" id="cartmenow-input-password" name="password" placeholder="{%trans%}Password{%endtrans%}">
+      </div>
+      <div class="cartmenow-cart-item">
+        <input type="password" class="cartmenow-input" id="cartmenow-input-password2" name="password2" placeholder="{%trans%}Repeat password{%endtrans%}">
+      </div>
+      <div class="cartmenow-cart-item">
+        <button type="button" class="cartmenow-clickable cartmenow-action-btn" onclick="registerUser();">{%trans%}Register{%endtrans%}</button>
+      </div>
+    </div>
+    <br><br><br>
+{%endblock%}

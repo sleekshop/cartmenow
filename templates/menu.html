@@ -1,0 +1,27 @@
+<div class="container">
+    <ul class="catagory_list_menu">
+
+    {% for item in menu %}
+    {% if item.children|length>0 %}
+      <li class="nav-item dropdown {%if item.id==active%}active{%endif%}">
+        <a class="nav-link dropdown-toggle ankernav-item " href="#" id="{% if sub.permalink!='' %}{{ sub.permalink }}{% else %}{{ value.id }}{% endif %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{ item.label }}</a>
+
+        <div class="dropdown-menu " aria-labelledby="{% if sub.permalink!='' %}{{ sub.permalink }}{% else %}{{ value.id }}{% endif %}">
+          {% for sub in item.children %}
+          <div class="nav-list"><a class="dropdown-item" href="{% if sub.permalink!='' %}/category/{{ sub.permalink }}{% else %}/category/{{ value.id }}{% endif %}">{{ sub.label }}</a></div>
+          {% endfor %}
+        </div>
+
+      </li>
+      {% else %}
+
+      <li class="nav-item {%if item.id==active%}active{%endif%}">
+        <a class="nav-link ankernav-item" href="{% if item.permalink!='' %}/category/{{ item.permalink }}{% else %}/category/{{ item.id }}{% endif %}" aria-haspopup="true" aria-expanded="true">{{ item.label }}</a>
+      </li>
+
+      {% endif %}
+    {% endfor %}
+
+    </ul>
+  </div>
+  </div>

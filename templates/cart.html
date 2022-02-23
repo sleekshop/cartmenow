@@ -1,0 +1,36 @@
+{% extends 'page.html' %}
+{% block content %}
+    {% if res.contents|length==0 %}
+<div class="col-md-12 form-btn">
+<h1>{%trans%}Your cart is empty{%endtrans%}</h1>
+<br><br>
+<button onclick="showCart();" class="cartmenow-clickable cartmenow-back-btn">{%trans%}Close{%endtrans%}
+</div>
+{%else%}
+    <div class="cartmenow-cart-overview">
+     <span class="cartmenow-headline">{%trans%}Your cart{%endtrans%}</span>
+      {% set sum_tax=0 %}
+      {%for value in res.contents%}
+      {% set sum_tax=sum_tax+(value.sum_price*value.attributes.sys_tax/(value.attributes.sys_tax+1))%}
+      <div class="cartmenow-cart-item">
+        <div class="cartmenow-cart-item-name">{{value.name}}
+        <div class="cartmenow-cart-item-description">{{value.description}}</div>
+        </div>
+        <span class="cartmenow-cart-item-quantity"><button class="cartmenow-clickable cartmenow-cart-minus-btn" onclick="decreaseQty({{value.id}});">-</button>{{value.quantity}}<button class="cartmenow-clickable cartmenow-cart-plus-btn" onclick="increaseQty({{value.id_product}});">+</button></span>
+        <span class="cartmenow-cart-item-price">{%trans%}Price{%endtrans%}: {{ value.price|number_format(2)}}€</span>
+        <span class="cartmenow-cart-item-sumprice">{%trans%}Sum{%endtrans%}: {{ value.sum_price|number_format(2)}}€</span>
+      </div>
+      <div class="cartmenow-cart-divider">&nbsp;</div>
+    {%endfor%}
+    <div class="cartmenow-cart-footer">
+    <div class="cartmenow-cart-footer-info-sum">{%trans%}Sum{%endtrans%}: </div>
+    <div class="cartmenow-cart-footer-value-sum">{{(res.sum)|number_format(2)}}€</div>
+    <div class="cartmenow-cart-footer-info-vat">{%trans%}Inkl. Mwst.{%endtrans%}: </div>
+    <div class="cartmenow-cart-footer-value-vat">{{sum_tax|number_format(2)}}€</div>
+    </div>
+</div>
+<div class="cartmenow-cart-divider">&nbsp;</div>
+<p align="right"><button onclick="showCart();" class="cartmenow-clickable cartmenow-back-btn">{%trans%}Continue shopping{%endtrans%}</button>
+<button onclick="showUserData();" class="cartmenow-clickable cartmenow-next-btn">{%trans%}Next{%endtrans%}</button></p>
+{%endif%}
+{% endblock %}

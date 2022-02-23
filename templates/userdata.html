@@ -1,0 +1,71 @@
+{% extends 'page.html' %}
+{% block content %}
+<div class="cartmenow-cart-overview">
+<span class="cartmenow-headline">{%trans%}Userdata{%endtrans%}</span>
+<br><br>
+{% if error_count!=0 %}
+<div class="cartmenow-alert-danger">
+ <span class="cartmenow-alert-close" onclick="this.parentElement.style.display='none';">&times;</span>
+ {%trans%}Please fill all fields marked with *{%endtrans%}
+ </div>
+{% endif %}
+<div style="width:100%;">
+  <div class="cartmenow-cart-item">
+  <label>E-Mail:</label>
+  <input type="text" class="cartmenow-input" id="cartmenow-input-email" name="email" placeholder="E-Mail" value="{{userdata.email}}">
+  </div>
+  <div class="cartmenow-cart-item">
+  <label>{%trans%}Salutation{%endtrans%}:</label>
+  <select name="salutation" class="cartmenow-select" id="cartmenow-select-salutation">
+  <option value="Mrs" {% if userdata.salutation=='Mrs' %}selected{%endif%}>{%trans%}Mrs{%endtrans%}</option>
+  <option value="Mr" {% if userdata.salutation=='Mr' %}selected{%endif%}>{%trans%}Mr{%endtrans%}</option>
+  </select>
+  </div>
+  <div class="cartmenow-cart-item">
+  <label>{%trans%}Firstname{%endtrans%}*</label>
+  <input type="text" name="firstname" class="cartmenow-input" value="{{userdata.firstname}}" id="cartmenow-input-firstname">
+  </div>
+  <div class="cartmenow-cart-item">
+  <label>{%trans%}Lastname{%endtrans%}*</label>
+  <input type="text" name="lastname" class="cartmenow-input" value="{{userdata.lastname}}" id="cartmenow-input-lastname">
+  </div>
+</div>
+<div style="width:100%">
+<div style="display:flex;">
+  <div class="cartmenow-cart-item" style="width:80%;display:flex;">
+  <label>{%trans%}Street{%endtrans%}*</label>
+  <input type="text" name="street" class="cartmenow-input" value="{{userdata.street}}" id="cartmenow-input-street">
+  </div>
+  <div class="cartmenow-cart-item" style="width:20%">
+  <label>{%trans%}Nummer{%endtrans%}*</label>
+  <input type="text" name="number" class="cartmenow-input" value="{{userdata.number}}" id="cartmenow-input-number">
+  </div>
+</div>
+<div style="display:flex;">
+  <div class="cartmenow-cart-item">
+  <label>{%trans%}Zip{%endtrans%}*</label>
+  <input type="text" name="zip" class="cartmenow-input" value="{{userdata.zip}}" id="cartmenow-input-zip">
+  </div>
+  <div class="cartmenow-cart-item">
+  <label>{%trans%}City{%endtrans%}*</label>
+  <input type="text" name="city" class="cartmenow-input" value="{{userdata.city}}" id="cartmenow-input-city">
+  </div>
+</div>
+<div class="cartmenow-cart-item">
+<label>{%trans%}Country{%endtrans%}*</label>
+<select name="country" class="cartmenow-select" id="cartmenow-select-country">
+<option value="">{%trans%}Please choose{%endtrans%}</option>
+<option value="DE" {% if userdata.country=='DE'%}selected{%endif%}>{%trans%}Germany{%endtrans%}</option>
+</select>
+</div>
+  <div class="cartmenow-cart-item">
+  <label>{%trans%}Notes{%endtrans%}:</label>
+  <textarea type="text" name="notes" class="cartmenow-text" id="cartmenow-text-notes">{{userdata.notes}}</textarea>
+  </div>
+  <div class="cartmenow-cart-item">
+    <button type="button" class="cartmenow-clickable cartmenow-action-btn" onclick="saveUserdata();">{%trans%}Next{%endtrans%}</button>
+  </div><br><br>
+</div>
+</div>
+<br><br><br>
+{% endblock %}

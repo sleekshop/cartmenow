@@ -1,0 +1,737 @@
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{res.description}}">
+    <title>{{res.title}}</title>
+
+
+
+    <!-- Bootstrap core CSS -->
+<link rel="shortcut icon" type="image/x-icon" href="/img/icon.png">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/slick.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/fonts/fonts.css" rel="stylesheet">
+<link href="/css/custome.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https ://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link   href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css" rel="stylesheet">
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css" rel="stylesheet" >
+<script src="https://js.stripe.com/v3/"></script>
+</head>
+  <body>
+
+  <div class="topmenu">
+  <div class="container large">
+    <div class="row">
+      {#<div class="languageswitcher">
+        <a href="#" class="active">DE</a>
+        <a href="#" class="">EN</a>
+      </div>#}
+      {#<div class="standorte">
+        <div class="acc-head">Ort</div>
+        <div class="acc-body">
+                      <a href="#">Hamburg</a>
+                      <a href="#">Düsseldorf</a>
+                      <a href="#">Wiesbaden</a>
+                      <a href="#">München</a>
+                      <a href="#">Berlin</a>
+                  </div>
+      </div>
+      <div class="schwerpunkte">
+        <div class="acc-head">Studium</div>
+        <div class="acc-body">
+                      <a href="#">mode</a>
+                      <a href="#">medien</a>
+                      <a href="#">management</a>
+                      <a href="#">design</a>
+                  </div>
+      </div>#}
+      <div class="schwerpunkte">
+        <div class="acc-head">Mein Konto</div>
+        <div class="acc-body">
+                    {% if username!="" %}
+                      <a href="/profile">{{ username }}</a>
+                      <a href="/logout">Abmelden</a>
+                    {% else %}
+                      <a href="/login">Anmelden</a>
+                      <a href="/register">Registrieren</a>
+                    {% endif %}
+                  </div>
+      </div>
+      <div class="quick">
+        <ul>
+          {#<li>
+            <div class="schwerpunkte">
+              <div class="acc-head">Benutzer</div>
+              <div class="acc-body">
+                          {% if username!="" %}
+                            <a href="/profile">{{ username }}</a>
+                            <a href="/logout">Abmelden</a>
+                          {% else %}
+                            <a href="/login">Anmelden</a>
+                            <a href="/register">Registrieren</a>
+                          {% endif %}
+                        </div>
+            </div>
+          </li>#}
+          {% if cart.sum>0 %}
+          <li><a href="/cart">Warenkorb</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<header>
+  <div class="container large">
+          <div class="inner">
+          <div class="item logo">
+            <a class="brand" href="/" title="AMD Akademie Mode &amp; Design">
+              <img src="/images/amd-logo.svg">
+            </a>
+          </div>
+          <div class="item megamenu" id="menu_toggele">
+            <i class="material-icons open_btn">menu</i>
+            <i class="material-icons close_btn">close</i>
+          </div>
+          <div class="item mobilemenu">
+            <!-- <i class="material-icons"></i> -->
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </div>
+          {#<div class="item search">
+            <i class="material-icons">search</i>
+          </div>#}
+          <div class="item conversion">
+            <img src="images/beratung.svg">
+          </div>
+          <div class="searchform"><form role="search" action="https://www.amdnet.de" method="get">
+      <input type="text" name="s" placeholder="Suchen...">
+    </form></div>
+              <div class="item call">
+            <a href="tel:+498008648648">
+              <i class="material-icons">call</i>
+            </a>
+          </div>
+          <div class="item chat">
+            <i class="material-icons">chat_bubble_outline</i>
+          </div>
+          <div class="item menuadd">
+            <a href="beratung/">Jetzt informieren</a>
+          </div>
+          <div class="item menuadd">
+            <a href="#">Infomaterial anfordern</a>
+          </div>
+          <div class="item menuadd">
+            <a href="#">Infoabend Anmeldung</a>
+          </div>
+          <div class="item menuadd bewerben">
+            <a href="#">Jetzt bewerben</a>
+          </div>
+        </div>
+    </div>
+</header>
+<div id="mobilecontact" class="open-contact ">
+  <p>Sie möchten uns eine Nachricht schicken? Wir freuen uns auf Ihre Kontaktaufnahme! Vielen Dank.</p>
+  <div data-habitat="C1"><form class="dhsv_kontakt_form dhsv_form "><div class="row"><div class="col-12"><div class="dhsv_formcontrol_textfield  "><input name="name" placeholder="Name *" type="text" value=""></div></div><div class="col-12"><div class="dhsv_formcontrol_textfield  "><input name="email" placeholder="E-Mail-Adresse *" type="text" value=""></div></div><div class="col-12"><div class="dhsv_formcontrol_textfield  "><input name="subject" placeholder="Betreff" type="text" value=""></div></div><div class="col-12"><div class="dhsv_formcontrol_textfield  "><textarea name="message" placeholder="Nachricht"></textarea></div></div></div><div class="buttons"><button class="dhsv_formcontrol_button btn btn-primary " type="submit" disabled="">absenden</button></div></form></div>
+</div>
+<div data-habitat="C1">
+  <div id="floatingmenu" class="">
+    <div class="floatingwrapper">
+
+      <div class="floatingbody Communication_body">
+        <div>
+          <div class="heading_box">
+          <p class=" underline">Studienberatung</p>
+        </div>
+          <p class="intro">Sie wollen an der AMD Akademie Mode &amp; Design studieren, aber Ihnen fehlen noch Informationen?</p>
+          <p class="intro">Wir unterstützen Sie durch unsere persönliche Beratung bei der Suche nach dem geeigneten Angebot.</p>
+          <div class="dhsv_tabs tabs">
+            <div class="dhsv_tabs--head">
+              <div class="dhsv_tabs--head--tab " >
+            <a class="inactive active" id="tab1">Hamburg</a>
+          </div>
+          <div class="dhsv_tabs--head--tab" >
+            <a class="inactive" id="tab2">Düsseldorf</a>
+          </div>
+          <div class="dhsv_tabs--head--tab">
+            <a class="inactive" id="tab3">Wiesbaden</a>
+          </div>
+          <div class="dhsv_tabs--head--tab">
+            <a class="inactive" id="tab4">München</a>
+          </div>
+          <div class="dhsv_tabs--head--tab">
+              <a class="inactive" id="tab5">Berlin</a>
+            </div>
+          </div>
+          <div class="dhsv_tabs--body tab_contenets" id="tab1C">
+            <div class="dhsv_tabs--body--tab">
+              <div class="dhsv_vc_kontaktperson">
+                <div class="slider hidedots flickity-enabled" tabindex="0">
+                  <div class="flickity-viewport">
+                    <div class="flickity-slider" style="left: 0px; transform: translateX(0%);">
+                      <div class="contactcon slide is-selected" aria-selected="true">
+                        <div class="imgwrapper">
+                          <div class="imgcon" style="background-image: url(images/staff_photo.jpeg );"></div>
+                        </div>
+                        <div class="contentwrapper">
+                          <div class="tab_headimng">
+                          <p class="underline">Sarah La Cognata</p>
+                          <p class="function intro">Studienberatung</p>
+                        </div>
+                          <ul class="contect_ul">
+                            <li>
+                              <i class="material-icons">call</i>
+                              <a class="phone" href="tel:+49 (0)40 237878-34">+49 (0)40 237878-34</a>
+                            </li>
+                            <li>
+                              <i class="material-icons">mail</i>
+                              <a class="mail" href="mailto:sarah.lacognata@amdnet.de">sarah.lacognata@amdnet.de</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dhsv_tabs--body tab_contenets" id="tab2C">
+            <div class="dhsv_tabs--body--tab">
+              <div class="dhsv_vc_kontaktperson">
+                <div class="slider hidedots flickity-enabled" tabindex="0">
+                  <div class="flickity-viewport">
+                    <div class="flickity-slider" style="left: 0px; transform: translateX(0%);">
+                      <div class="contactcon slide is-selected" aria-selected="true">
+                        <div class="imgwrapper">
+                          <div class="imgcon" style="background-image: url(images/staff_photo.jpeg );"></div>
+                        </div>
+                        <div class="contentwrapper">
+                          <div class="tab_headimng">
+                          <p class="underline">Sarah La Cognata</p>
+                          <p class="function intro">Studienberatung</p>
+                        </div>
+                          <ul class="contect_ul">
+                            <li>
+                              <i class="material-icons">call</i>
+                              <a class="phone" href="tel:+49 (0)40 237878-34">+49 (0)40 237878-34</a>
+                            </li>
+                            <li>
+                              <i class="material-icons">mail</i>
+                              <a class="mail" href="mailto:sarah.lacognata@amdnet.de">sarah.lacognata@amdnet.de</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dhsv_tabs--body tab_contenets" id="tab3C">
+            <div class="dhsv_tabs--body--tab">
+              <div class="dhsv_vc_kontaktperson">
+                <div class="slider hidedots flickity-enabled" tabindex="0">
+                  <div class="flickity-viewport">
+                    <div class="flickity-slider" style="left: 0px; transform: translateX(0%);">
+                      <div class="contactcon slide is-selected" aria-selected="true">
+                        <div class="imgwrapper">
+                          <div class="imgcon" style="background-image: url(images/staff_photo.jpeg );"></div>
+                        </div>
+                        <div class="contentwrapper">
+                          <div class="tab_headimng">
+                          <p class="underline">Sarah La Cognata</p>
+                          <p class="function intro">Studienberatung</p>
+                        </div>
+                          <ul class="contect_ul">
+                            <li>
+                              <i class="material-icons">call</i>
+                              <a class="phone" href="tel:+49 (0)40 237878-34">+49 (0)40 237878-34</a>
+                            </li>
+                            <li>
+                              <i class="material-icons">mail</i>
+                              <a class="mail" href="mailto:sarah.lacognata@amdnet.de">sarah.lacognata@amdnet.de</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dhsv_tabs--body tab_contenets" id="tab4C">
+            <div class="dhsv_tabs--body--tab">
+              <div class="dhsv_vc_kontaktperson">
+                <div class="slider hidedots flickity-enabled" tabindex="0">
+                  <div class="flickity-viewport">
+                    <div class="flickity-slider" style="left: 0px; transform: translateX(0%);">
+                      <div class="contactcon slide is-selected" aria-selected="true">
+                        <div class="imgwrapper">
+                          <div class="imgcon" style="background-image: url(images/staff_photo.jpeg );"></div>
+                        </div>
+                        <div class="contentwrapper">
+                          <div class="tab_headimng">
+                          <p class="underline">Sarah La Cognata</p>
+                          <p class="function intro">Studienberatung</p>
+                        </div>
+                          <ul class="contect_ul">
+                            <li>
+                              <i class="material-icons">call</i>
+                              <a class="phone" href="tel:+49 (0)40 237878-34">+49 (0)40 237878-34</a>
+                            </li>
+                            <li>
+                              <i class="material-icons">mail</i>
+                              <a class="mail" href="mailto:sarah.lacognata@amdnet.de">sarah.lacognata@amdnet.de</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dhsv_tabs--body tab_contenets" id="tab5C">
+            <div class="dhsv_tabs--body--tab">
+              <div class="dhsv_vc_kontaktperson">
+                <div class="slider hidedots flickity-enabled" tabindex="0">
+                  <div class="flickity-viewport">
+                    <div class="flickity-slider" style="left: 0px; transform: translateX(0%);">
+                      <div class="contactcon slide is-selected" aria-selected="true">
+                        <div class="imgwrapper">
+                          <div class="imgcon" style="background-image: url(images/staff_photo.jpeg );"></div>
+                        </div>
+                        <div class="contentwrapper">
+                          <div class="tab_headimng">
+                          <p class="underline">Sarah La Cognata</p>
+                          <p class="function intro">Studienberatung</p>
+                        </div>
+                          <ul class="contect_ul">
+                            <li>
+                              <i class="material-icons">call</i>
+                              <a class="phone" href="tel:+49 (0)40 237878-34">+49 (0)40 237878-34</a>
+                            </li>
+                            <li>
+                              <i class="material-icons">mail</i>
+                              <a class="mail" href="mailto:sarah.lacognata@amdnet.de">sarah.lacognata@amdnet.de</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="https://www.amdnet.de/beratung/information-anfordern/" class="btn btn-default btn-large">Infomaterial anfordern</a>
+        <a href="https://www.amdnet.de/bewerben/" class="btn btn-primary btn-large">Bewerben</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{% block header %}
+<div id="menu202" class="mobilmenu_shortscreen">
+  <div class="languageswitcher">
+    <a href="//bwyw51.myraidbox.de" class="active">DE</a>
+    <a href="//b96qj7l.myraidbox.de" class="">EN</a>
+  </div>
+      <ul id="menu-mobile-menu" class="menu">
+        <li id="menu-item-47" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-19 current_page_item menu-item-47"><a href="https://www.amdnet.de/" aria-current="page">Startseite</a></li>
+<li id="menu-item-7840" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7840"><a>Studium</a>
+<ul class="sub-menus"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+  <li id="menu-item-7859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7859"><a href="https://www.amdnet.de/studium/">Übersicht</a></li>
+  <li id="menu-item-7841" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7841"><a>Bachelor (B.A.)</a>
+  <ul class="sub-menu"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+    <li id="menu-item-9192" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9192"><a href="https://international-amd.com/degree-programs/fashion-design-education-bachelor/">Fashion Design (B.A.)</a></li>
+    <li id="menu-item-7846" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-7846"><a href="https://www.amdnet.de/studiengang/fashionjournalismus-medienkommunikation-studium-bachelor/">Fashion Journalism and Communication (B.A.)</a></li>
+    <li id="menu-item-7848" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-7848"><a href="https://www.amdnet.de/studiengang/innovationsmanagement-design-studium-bachelor/">Innovationsmanagement &amp; Design (B.A.)</a></li>
+    <li id="menu-item-9958" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-9958"><a href="https://www.amdnet.de/studiengang/interiordesign-bachelor-studium/">Interior Design (B.A.)</a></li>
+    <li id="menu-item-7847" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-7847"><a href="https://www.amdnet.de/studiengang/kommunikationsdesign-markendesign-studium-bachelor/">Marken- und Kommunikationsdesign (mit Praktikum) (B.A.)</a></li>
+    <li id="menu-item-7849" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-7849"><a href="https://www.amdnet.de/studiengang/modedesign-studium-bachelor/">Mode Design (B.A.)</a></li>
+    <li id="menu-item-7845" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-7845"><a href="https://www.amdnet.de/studiengang/modemanagement-designmanagement-studium-bachelor/">Mode- und Designmanagement (B.A.)</a></li>
+    <li id="menu-item-10818" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-10818"><a href="https://www.amdnet.de/studiengang/nachhaltiges-management-kreativwirtschaft-studium-bachelor/">Nachhaltiges Management in der Kreativwirtschaft (B.A.)</a></li>
+    <li id="menu-item-7842" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-7842"><a href="https://www.amdnet.de/studiengang/produktdesign-studium-bachelor/">Produkt Design (B.A.)</a></li>
+    <li id="menu-item-9957" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-9957"><a href="https://www.amdnet.de/studiengang/raumdesign-bachelor-studium/">Raum Design (B.A.)</a></li>
+  </ul>
+</li>
+  <li id="menu-item-9951" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-9951"><a>Bachelor (B. A.) Berufsbeleitend</a>
+  <ul class="sub-menu"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+    <li id="menu-item-9952" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-9952"><a href="https://www.amdnet.de/studiengang/modemanagement-studium-bachelor/">Modemanagement (B.A.)*</a></li>
+  </ul>
+</li>
+  <li id="menu-item-7851" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7851"><a>Ausbildung mit Bachelor (B.A. Hons. UK)</a>
+  <ul class="sub-menu"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+    <li id="menu-item-7857" class="menu-item menu-item-type-post_type menu-item-object-aus_weiterbildung menu-item-7857"><a href="https://www.amdnet.de/aus-und-weiterbildung/modejournalismus-medienkommunikation/">Modejournalismus/ Medienkommunikation</a></li>
+  </ul>
+</li>
+  <li id="menu-item-7850" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7850"><a>Master (M.A.)</a>
+  <ul class="sub-menu"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+    <li id="menu-item-7853" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-7853"><a href="https://www.amdnet.de/studiengang/fashion-and-retail-management-studium-master/">Fashion and Retail Management (M.A.)</a></li>
+    <li id="menu-item-7854" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-7854"><a href="https://www.amdnet.de/studiengang/modemanagement-produktmanagement-studium-master/">Fashion and Product Management (M.A.)</a></li>
+    <li id="menu-item-9193" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9193"><a href="https://international-amd.com/degree-programs/sustainability-in-fashion-and-creative-industries-education-master/">Sustainability in Fashion and Creative Industries (M.A.)</a></li>
+  </ul>
+</li>
+  <li id="menu-item-7852" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7852"><a>Vorbereitungskurs</a>
+  <ul class="sub-menu"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+    <li id="menu-item-7856" class="menu-item menu-item-type-post_type menu-item-object-aus_weiterbildung menu-item-7856"><a href="https://www.amdnet.de/aus-und-weiterbildung/qualifying-module/">Qualifying Module</a></li>
+  </ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-7858" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7858"><a>Ausbildung mit Bachelor (B.A. Hons. UK)</a>
+<ul class="sub-menus"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+  <li id="menu-item-7860" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7860"><a href="https://www.amdnet.de/studium/">Übersicht</a></li>
+  <li id="menu-item-7862" class="menu-item menu-item-type-post_type menu-item-object-aus_weiterbildung menu-item-7862"><a href="https://www.amdnet.de/aus-und-weiterbildung/modejournalismus-medienkommunikation/">Modejournalismus/ Medienkommunikation</a></li>
+</ul>
+</li>
+<li id="menu-item-7865" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7865"><a>Weiterbildung</a>
+<ul class="sub-menus"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+  <li id="menu-item-7861" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7861"><a href="https://www.amdnet.de/studium/">Übersicht</a></li>
+  <li id="menu-item-7863" class="menu-item menu-item-type-post_type menu-item-object-aus_weiterbildung menu-item-7863"><a href="https://www.amdnet.de/aus-und-weiterbildung/schnittdirektrice-weiterbildung/">Direktricen</a></li>
+  <li id="menu-item-7864" class="menu-item menu-item-type-post_type menu-item-object-aus_weiterbildung menu-item-7864"><a href="https://www.amdnet.de/aus-und-weiterbildung/fashion-stylist-ausbildung/">Styling</a></li>
+</ul>
+</li>
+<li id="menu-item-13129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-13129"><a>Summer School</a>
+<ul class="sub-menus"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+  <li id="menu-item-13133" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13133"><a href="https://www.amdnet.de/studium/">Übersicht</a></li>
+  <li id="menu-item-13130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13130"><a href="https://international-amd.com/training/polimoda-fashion-future/">Fa&shy;shion &shy;Fu&shy;ture <br> <span style="font-size: 15px;">In&shy; &shy;part&shy;nership&shy; with POLIMODA</span></a></li>
+</ul>
+</li>
+<li id="menu-item-7866" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7866"><a>Standorte</a>
+<ul class="sub-menus"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+  <li id="menu-item-7867" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7867"><a href="https://www.amdnet.de/amd-akademie-mode-design/standorte/">Übersicht</a></li>
+  <li id="menu-item-7868" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-7868"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-hamburg/">AMD Hamburg</a></li>
+  <li id="menu-item-7869" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-7869"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-duesseldorf/">AMD Düsseldorf</a></li>
+  <li id="menu-item-7871" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-7871"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-wiesbaden/">AMD Wiesbaden</a></li>
+  <li id="menu-item-7872" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-7872"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-muenchen/">AMD München</a></li>
+  <li id="menu-item-7870" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-7870"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-berlin/">AMD Berlin</a></li>
+</ul>
+</li>
+<li id="menu-item-7874" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7874"><a href="https://www.amdnet.de/alumni/">Alumni</a></li>
+<li id="menu-item-7875" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7875"><a href="https://www.amdnet.de/termine/">Termine</a></li>
+<li id="menu-item-7876" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7876"><a>AMD AKADEMIE MODE &amp; DESIGN</a>
+<ul class="sub-menus"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+  <li id="menu-item-7882" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7882"><a href="https://www.amdnet.de/amd-akademie-mode-design/">Übersicht</a></li>
+  <li id="menu-item-10722" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10722"><a href="https://www.amdnet.de/amd-akademie-mode-design/team/">Team</a></li>
+  <li id="menu-item-7879" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7879"><a href="https://www.amdnet.de/amd-akademie-mode-design/ordnungen/">Ordnungen</a></li>
+  <li id="menu-item-7880" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7880"><a href="https://www.amdnet.de/amd-akademie-mode-design/qualitaet/">Qualität</a></li>
+  <li id="menu-item-7878" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7878"><a href="https://www.amdnet.de/amd-akademie-mode-design/leitbild-historie/">Leitbild &amp; Historie</a></li>
+  <li id="menu-item-7881" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7881"><a href="https://www.amdnet.de/karriere/">Karriere</a></li>
+</ul>
+</li>
+<li id="menu-item-7883" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7883"><a>International</a>
+<ul class="sub-menus"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+  <li id="menu-item-7896" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7896"><a href="https://www.amdnet.de/international/">Übersicht</a></li>
+  <li id="menu-item-8143" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-8143"><a>Informationen</a>
+  <ul class="sub-menu"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+    <li id="menu-item-7884" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7884"><a href="https://www.amdnet.de/international/auslandsangebot-fuer-amd-studierende/">Auslandsangebot für AMD Studierende</a></li>
+    <li id="menu-item-7890" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7890"><a href="https://www.amdnet.de/international/programme-fuer-internationale-studierende-an-der-amd/">Programme für internationale Studierende an der AMD</a></li>
+    <li id="menu-item-7886" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7886"><a href="https://www.amdnet.de/international/erasmus/">Erasmus+</a></li>
+  </ul>
+</li>
+  <li id="menu-item-8144" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-8144"><a>Partnerhochschulen</a>
+  <ul class="sub-menu"><li class="back-menu"><a><i class="ion-android-arrow-back"></i> Zurück</a></li>
+    <li id="menu-item-7885" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7885"><a href="https://www.amdnet.de/international/berkeley-college/">Berkeley College</a></li>
+    <li id="menu-item-7887" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7887"><a href="https://www.amdnet.de/international/european-college-of-business-and-management-ecbm/">European College of Business and Management (ECBM)</a></li>
+    <li id="menu-item-7888" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7888"><a href="https://www.amdnet.de/international/hongik-university/">Hongik University</a></li>
+    <li id="menu-item-7889" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7889"><a href="https://www.amdnet.de/international/naba-nuova-accademia-di-belle-arti/">NABA – Nuova Accademia di Belle Arti</a></li>
+    <li id="menu-item-8046" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8046"><a href="https://www.amdnet.de/international/vancouver-island-university-vancouver-ca/">Vancouver Island University (Vancouver, CA)</a></li>
+  </ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-15314" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15314"><a href="https://www.amdnet.de/forschung/">Forschung</a></li>
+<li id="menu-item-42" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42"><a href="https://www.amdnet.de/kontakt/">Kontakt</a></li>
+</ul>
+  </div>
+
+  {% endblock %}
+
+<div id="root" class="content">
+<main class="main">
+
+             {% block head %}
+
+             {% endblock %}
+
+             {% block content %} HERE  OUR CONTENT {% endblock %}
+
+</main>
+</div>
+{% block footer %}
+<footer class="bg_light_gray">
+   <div class="container">
+      <div class="row">
+         <div class="col-12 col-lg-2 fr-1">
+            <span class="h5">Get in Touch</span>
+            <div class="infobox">
+               <i class="material-icons">call</i>
+               <div>
+                  <span>Studienberatung</span>
+                  <a href="tel:+498008648648">0800 864 864 8</a>
+               </div>
+            </div>
+            <div class="infobox">
+               <i class="material-icons">mail</i>
+               <a href="mailto:studienberatung@amdnet.de">studienberatung@amdnet.de</a>
+            </div>
+            <div class="infobox">
+               <i class="material-icons">share</i>
+               <span>Folge uns <b><a href="https://www.instagram.com/explore/tags/amdlife" target="_blank" rel="noopener">#amdlife</a></b></span>
+                <ul class="share">
+            <li><a href="https://www.facebook.com/AMDAkademieModeDesign" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/my.amd/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="https://www.youtube.com/channel/UCdXeZkP6cu7q5wv0gelmd2A" target="_blank" rel="noopener"><i class="fa fa-youtube-play"></i></a></li>
+          </ul>
+            </div>
+         </div>
+         <div class="col-12 col-lg-4 fr-2">
+            <span class="h5">Hauptnavigation</span>
+            <div class="menu-footer-hauptnavigation-container">
+               <ul id="menu-footer-hauptnavigation" class="menu">
+                  <li id="menu-item-945" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-945"><a href="https://www.amdnet.de/studium/">Studium</a></li>
+                  <li id="menu-item-6923" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6923"><a href="https://www.amdnet.de/studium/">Ausbildung<br> mit Bachelor (B.A. Hons. UK)</a></li>
+                  <li id="menu-item-6922" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6922"><a href="https://www.amdnet.de/studium/">Weiterbildung</a></li>
+                  <li id="menu-item-939" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-939"><a href="https://www.amdnet.de/amd-akademie-mode-design/">AMD AKADEMIE MODE &amp; DESIGN</a></li>
+                  <li id="menu-item-941" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-941"><a href="https://www.amdnet.de/?page_id=871">Forschung</a></li>
+                  <li id="menu-item-6921" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6921"><a href="https://www.amdnet.de/international/">International</a></li>
+                  <li id="menu-item-938" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-938"><a href="https://www.amdnet.de/alumni/">Alumni</a></li>
+               </ul>
+            </div>
+         </div>
+         <div class="col-6 col-sm-4 col-lg-2 fr-3">
+            <span class="h5">Bereiche</span>
+            <div class="menu-footer-schools-container">
+               <ul id="menu-footer-schools" class="menu">
+                  <li id="menu-item-6291" class="menu-item menu-item-type-post_type menu-item-object-landingpage menu-item-6291"><a href="https://www.amdnet.de/mode-studieren/">Mode</a></li>
+                  <li id="menu-item-6293" class="menu-item menu-item-type-post_type menu-item-object-landingpage menu-item-6293"><a href="https://www.amdnet.de/medien-studieren/">Medien</a></li>
+                  <li id="menu-item-6294" class="menu-item menu-item-type-post_type menu-item-object-landingpage menu-item-6294"><a href="https://www.amdnet.de/management-studieren/">Management</a></li>
+                  <li id="menu-item-6292" class="menu-item menu-item-type-post_type menu-item-object-landingpage menu-item-6292"><a href="https://www.amdnet.de/design-studieren/">Design</a></li>
+               </ul>
+            </div>
+         </div>
+         <div class="col-6 col-sm-4 col-lg-2 fr-4">
+            <span class="h5">Standorte</span>
+            <div class="menu-footer-standorte-container">
+               <ul id="menu-footer-standorte" class="menu">
+                  <li id="menu-item-6286" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-6286"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-hamburg/">AMD Hamburg</a></li>
+                  <li id="menu-item-6287" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-6287"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-duesseldorf/">AMD Düsseldorf</a></li>
+                  <li id="menu-item-6289" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-6289"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-wiesbaden/">AMD Wiesbaden</a></li>
+                  <li id="menu-item-6290" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-6290"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-muenchen/">AMD München</a></li>
+                  <li id="menu-item-6288" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-6288"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-berlin/">AMD Berlin</a></li>
+               </ul>
+            </div>
+         </div>
+         <div class="col-6 col-sm-4 col-lg-2 fr-5">
+            <span class="h5">Service</span>
+            <div class="menu-footer-service-container">
+               <ul id="menu-footer-service" class="menu">
+                  <li id="menu-item-957" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-957"><a href="https://www.amdnet.de/termine/">Termine</a></li>
+                  <li id="menu-item-958" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-958"><a href="https://www.amdnet.de/kontakt/">Kontakt</a></li>
+                  <li id="menu-item-7801" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7801"><a href="https://www.amdnet.de/karriere/">Karriere</a></li>
+                  <li id="menu-item-960" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-960"><a href="/content/impressum">Impressum</a></li>
+                  <li id="menu-item-959" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-959"><a href="https://www.amdnet.de/datenschutz/">Datenschutz</a></li>
+                  <li id="menu-item-962" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-962"><a href="https://www.hs-fresenius.de/">HS Fresenius</a></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</footer>
+ <div class="bottom_footer">
+    <div class="abbinder">
+  <div class="container">
+    <div class="row">
+      <a href="//www.hs-fresenius.de" target="_blank" rel="noopener"><img class="hsf-logo-footer" src="https://www.amdnet.de/wp-content/uploads/hochschule-fresenius-logo.svg" alt="Hochschule Fresenius"></a>
+      <a href="/"><img class="amd-logo-footer" src="https://www.amdnet.de/wp-content/uploads/amd_dachmarke.png" alt="AMD Akademie Mode &amp; Design"></a>
+      <div class="akk">
+        <p class="small">Staatlich anerkannt sowie akkreditiert durch:</p>
+        <object data="https://www.amdnet.de/wp-content/uploads/akkreditierungen.svg" type="image/svg+xml"></object>
+      </div>
+    </div>
+  </div>
+</div>
+   </div>
+<div class="megamenuwrapper">
+   <div class="navwrapper">
+      <div class="container large">
+         <div class="menu-main-menu-container">
+            <ul id="menu-main-menu" class="menu"><li id="menu-item-884" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-884"><a href="#">Studium</a>
+<ul class="sub-menu"><li class="menu-item"><a class="sub-menu-back">Studium</a><a href="https://www.amdnet.de/studium/" class="btn btn-default">Übersicht</a></li><div class="itemwrapper row">
+
+  <li id="menu-item-6663" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-6663"><a href="#">Bachelor (B.A.)</a>
+  <ul class="sub-menu">
+    <li id="menu-item-7778" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7778"><a href="https://international-amd.com/degree-programs/fashion-design-education-bachelor/">Fashion Design (B.A.)</a></li>
+    <li id="menu-item-4837" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-4837"><a href="https://www.amdnet.de/studiengang/fashionjournalismus-medienkommunikation-studium-bachelor/">Fashion Journalism and Communication (B.A.)</a></li>
+    <li id="menu-item-4839" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-4839"><a href="https://www.amdnet.de/studiengang/innovationsmanagement-design-studium-bachelor/">Innovationsmanagement &amp; Design (B.A.)</a></li>
+    <li id="menu-item-9962" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-9962"><a href="https://www.amdnet.de/studiengang/interiordesign-bachelor-studium/">Interior Design (B.A.)</a></li>
+    <li id="menu-item-4838" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-4838"><a href="https://www.amdnet.de/studiengang/kommunikationsdesign-markendesign-studium-bachelor/">Marken- und Kommunikationsdesign (mit Praktikum) (B.A.)</a></li>
+    <li id="menu-item-4840" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-4840"><a href="https://www.amdnet.de/studiengang/modedesign-studium-bachelor/">Mode Design (B.A.)</a></li>
+    <li id="menu-item-4836" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-4836"><a href="https://www.amdnet.de/studiengang/modemanagement-designmanagement-studium-bachelor/">Mode- und Designmanagement (B.A.)</a></li>
+    <li id="menu-item-10819" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-10819"><a href="https://www.amdnet.de/studiengang/nachhaltiges-management-kreativwirtschaft-studium-bachelor/">Nachhaltiges Management in der Kreativwirtschaft (B.A.)</a></li>
+    <li id="menu-item-4833" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-4833"><a href="https://www.amdnet.de/studiengang/produktdesign-studium-bachelor/">Produkt Design (B.A.)</a></li>
+    <li id="menu-item-9961" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-9961"><a href="https://www.amdnet.de/studiengang/raumdesign-bachelor-studium/">Raum Design (B.A.)</a></li>
+    <li id="menu-item-8706" class="menu-heading menu-item menu-item-type-custom menu-item-object-custom menu-item-8706"><a>Bachelor (B. A.) Berufsbeleitend</a></li>
+    <li id="menu-item-8707" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-8707"><a href="https://www.amdnet.de/studiengang/modemanagement-studium-bachelor/">Modemanagement (B.A.)*</a></li>
+  </ul>
+</li>
+  <li id="menu-item-7794" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7794"><a href="#">Ausbildung mit BACHELOR (B.A. Hons. UK)</a>
+  <ul class="sub-menu">
+    <li id="menu-item-7795" class="menu-item menu-item-type-post_type menu-item-object-aus_weiterbildung menu-item-7795"><a href="https://www.amdnet.de/aus-und-weiterbildung/modejournalismus-medienkommunikation/">Modejournalismus/ Medienkommunikation</a></li>
+    <li id="menu-item-6664" class="menu-heading menu-item menu-item-type-custom menu-item-object-custom menu-item-6664"><a>Master (M.A.)</a></li>
+    <li id="menu-item-7777" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7777"><a href="https://international-amd.com/degree-programs/sustainability-in-fashion-and-creative-industries-education-master/">Sustainability in Fashion and Creative Industries (M.A.)</a></li>
+    <li id="menu-item-4831" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-4831"><a href="https://www.amdnet.de/studiengang/modemanagement-produktmanagement-studium-master/">Fashion and Product Management (M.A.)</a></li>
+    <li id="menu-item-6673" class="menu-item menu-item-type-post_type menu-item-object-studiengang menu-item-6673"><a href="https://www.amdnet.de/studiengang/fashion-and-retail-management-studium-master/">Fashion and Retail Management (M.A.)</a></li>
+    <li id="menu-item-4847" class="menu-heading menu-item menu-item-type-custom menu-item-object-custom menu-item-4847"><a>Vorbereitungskurs</a></li>
+    <li id="menu-item-7148" class="menu-item menu-item-type-post_type menu-item-object-aus_weiterbildung menu-item-7148"><a href="https://www.amdnet.de/aus-und-weiterbildung/qualifying-module/">Qualifying Module</a></li>
+  </ul>
+</li>
+</div></ul>
+</li>
+<li id="menu-item-6665" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-6665"><a href="#">Ausbildung</a>
+<ul class="sub-menu"><li class="menu-item"><a class="sub-menu-back">Ausbildung</a><a href="https://www.amdnet.de/studium/" class="btn btn-default">Übersicht</a></li><div class="itemwrapper col">
+
+  <li id="menu-item-6674" class="mm-disclaimer menu-item menu-item-type-post_type menu-item-object-aus_weiterbildung menu-item-6674"><a href="https://www.amdnet.de/aus-und-weiterbildung/modejournalismus-medienkommunikation/">Modejournalismus/ Medienkommunikation</a><p class="small">B.A. (Hons) Fashion Management and Communication (mit MODEJOURNALISMUS / MEDIENKOMMUNIKATION optional verbundenes Zusatzstudium)</p></li>
+</div></ul>
+</li>
+<li id="menu-item-6666" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-6666"><a href="#">Weiterbildung</a>
+<ul class="sub-menu"><li class="menu-item"><a class="sub-menu-back">Weiterbildung</a><a href="https://www.amdnet.de/studium/" class="btn btn-default">Übersicht</a></li><div class="itemwrapper col">
+
+  <li id="menu-item-6671" class="menu-item menu-item-type-post_type menu-item-object-aus_weiterbildung menu-item-6671"><a href="https://www.amdnet.de/aus-und-weiterbildung/schnittdirektrice-weiterbildung/">Direktricen</a></li>
+  <li id="menu-item-6672" class="menu-item menu-item-type-post_type menu-item-object-aus_weiterbildung menu-item-6672"><a href="https://www.amdnet.de/aus-und-weiterbildung/fashion-stylist-ausbildung/">Styling</a></li>
+</div></ul>
+</li>
+<li id="menu-item-13105" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-13105"><a href="#">Summer School</a>
+<ul class="sub-menu"><li class="menu-item"><a class="sub-menu-back">Summer School</a></li><div class="itemwrapper col">
+  <li id="menu-item-13106" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13106"><a href="https://international-amd.com/training/polimoda-fashion-future/">Fa&shy;shion &shy;Fu&shy;ture <br> <span style="font-size: 15px;">In&shy; &shy;part&shy;nership&shy; with POLIMODA</span></a></li>
+</div></ul>
+</li>
+<li id="menu-item-887" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-887"><a href="https://www.amdnet.de/amd-akademie-mode-design/standorte/">Standorte</a>
+<ul class="sub-menu"><li class="menu-item"><a class="sub-menu-back">Standorte</a><a href="https://www.amdnet.de/amd-akademie-mode-design/standorte/" class="btn btn-default">Übersicht</a></li><div class="itemwrapper col">
+
+  <li id="menu-item-4824" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-4824"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-hamburg/">AMD Hamburg</a></li>
+  <li id="menu-item-4825" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-4825"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-duesseldorf/">AMD Düsseldorf</a></li>
+  <li id="menu-item-4827" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-4827"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-wiesbaden/">AMD Wiesbaden</a></li>
+  <li id="menu-item-4828" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-4828"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-muenchen/">AMD München</a></li>
+  <li id="menu-item-4826" class="menu-item menu-item-type-post_type menu-item-object-standort menu-item-4826"><a href="https://www.amdnet.de/standort/amd-akademie-mode-design-berlin/">AMD Berlin</a></li>
+</div></ul>
+</li>
+<li id="menu-item-11167" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11167"><a href="https://www.amdnet.de/showcase/">Showcase</a></li>
+<li id="menu-item-889" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-889"><a href="https://www.amdnet.de/alumni/">Alumni</a></li>
+<li id="menu-item-11164" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11164"><a href="https://www.amdnet.de/blog/">Blo&shy;ga&shy;zi&shy;ne</a></li>
+<li id="menu-item-8247" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8247"><a href="https://www.amdnet.de/news/">News</a></li>
+<li id="menu-item-890" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-890"><a href="https://www.amdnet.de/termine/">Termine</a></li>
+<li id="menu-item-891" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-891"><a href="https://www.amdnet.de/amd-akademie-mode-design/">Über uns</a>
+<ul class="sub-menu"><li class="menu-item"><a class="sub-menu-back">Über uns</a><a href="https://www.amdnet.de/amd-akademie-mode-design/" class="btn btn-default">Übersicht</a></li><div class="itemwrapper col">
+
+  <li id="menu-item-10721" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10721"><a href="https://www.amdnet.de/amd-akademie-mode-design/team/">Team</a></li>
+  <li id="menu-item-3189" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3189"><a href="https://www.amdnet.de/amd-akademie-mode-design/ordnungen/">Ordnungen</a></li>
+  <li id="menu-item-3190" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3190"><a href="https://www.amdnet.de/amd-akademie-mode-design/qualitaet/">Qualität</a></li>
+  <li id="menu-item-3187" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3187"><a href="https://www.amdnet.de/amd-akademie-mode-design/leitbild-historie/">Leitbild &amp; Historie</a></li>
+  <li id="menu-item-7800" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7800"><a href="https://www.amdnet.de/karriere/">Karriere</a></li>
+</div></ul>
+</li>
+<li id="menu-item-3192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3192"><a href="https://www.amdnet.de/international/">International</a>
+<ul class="sub-menu"><li class="menu-item"><a class="sub-menu-back">International</a><a href="https://www.amdnet.de/international/" class="btn btn-default">Übersicht</a></li><div class="itemwrapper row">
+
+  <li id="menu-item-8145" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-8145"><a href="#">Informationen</a>
+  <ul class="sub-menu">
+    <li id="menu-item-3193" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3193"><a href="https://www.amdnet.de/international/auslandsangebot-fuer-amd-studierende/">Auslandsangebot für AMD Studierende</a></li>
+    <li id="menu-item-3200" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3200"><a href="https://www.amdnet.de/international/programme-fuer-internationale-studierende-an-der-amd/">Programme für internationale Studierende an der AMD</a></li>
+    <li id="menu-item-3196" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3196"><a href="https://www.amdnet.de/international/erasmus/">Erasmus+</a></li>
+  </ul>
+</li>
+  <li id="menu-item-8146" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-8146"><a href="#">Partnerhochschulen</a>
+  <ul class="sub-menu">
+    <li id="menu-item-3195" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3195"><a href="https://www.amdnet.de/international/berkeley-college/">Berkeley College</a></li>
+    <li id="menu-item-3194" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3194"><a href="https://www.amdnet.de/international/donghua-university/">DONGHUA UNIVERSITY</a></li>
+    <li id="menu-item-3197" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3197"><a href="https://www.amdnet.de/international/european-college-of-business-and-management-ecbm/">European College of Business and Management (ECBM)</a></li>
+    <li id="menu-item-3198" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3198"><a href="https://www.amdnet.de/international/hongik-university/">Hongik University</a></li>
+    <li id="menu-item-3199" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3199"><a href="https://www.amdnet.de/international/naba-nuova-accademia-di-belle-arti/">NABA – Nuova Accademia di Belle Arti</a></li>
+    <li id="menu-item-8044" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8044"><a href="https://www.amdnet.de/international/vancouver-island-university-vancouver-ca/">Vancouver Island University (Vancouver, CA)</a></li>
+  </ul>
+</li>
+</div></ul>
+</li>
+<li id="menu-item-15307" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15307"><a target="_blank" rel="noopener noreferrer" href="https://www.amdnet.de/forschung/">Forschung</a></li>
+<li id="menu-item-895" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-895"><a href="https://www.amdnet.de/kontakt/">Kontakt</a></li>
+</ul>
+         </div>
+         <div class="menu-secondary-menu-container">
+            <ul id="menu-secondary-menu" class="menu">
+               <li id="menu-item-7759" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7759"><a href="https://www.amdnet.de/intern/">My AMD</a></li>
+               <li id="menu-item-7758" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7758"><a href="/content/impressum">Impressum</a></li>
+               <li id="menu-item-7757" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-7757"><a href="https://www.amdnet.de/datenschutz/">Datenschutz</a></li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>
+ {% endblock %}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="/js/jquery.imageLens.js"></script>
+ <script type="text/javascript" src="/js/slick.min.js" ></script>
+ <script type="text/javascript" src="/js/main-sleek.js" ></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+ <script src="/js/amd.js"></script>
+ <script>
+   $(function () {
+$('.sliderwrapper').slick({
+   slidesToShow: 1,
+   slidesToScroll: 1,
+   arrows: false,
+   fade: true,
+   asNavFor: '.headlines',
+   autoplay: true,
+   autoplaySpeed: 4000,
+   responsive: [
+     {
+        breakpoint: 2500,
+        settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true,
+        fade: true,
+      }
+    }
+   ]
+ });
+ $('.slider-nav').slick({
+   slidesToShow: 4,
+   slidesToScroll:0,
+   asNavFor: '.sliderwrapper',
+   dots: false,
+   focusOnSelect: true,
+   responsive: [{
+                breakpoint: 800,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll:1,
+                    fade: true,
+                    autoplaySpeed: 4000,
+                }
+            }],
+ });
+});
+
+ </script>
+</body>
+</html>

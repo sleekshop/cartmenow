@@ -1,0 +1,55 @@
+{% extends 'page-checkout-profile.html' %}
+{% block content %}
+<div class="hero fixed_large">
+    <div class="herowrapper">
+      <div class="imagewrapper">
+        <div class="image" ></div>
+      </div>
+    </div>
+    <div class="headline">
+      <div class="h1 red">
+                      <h1>Bestellungen</h1>
+             </div>
+    </div>
+  </div>
+  
+  <!--{% include "menu.html" %}-->
+
+  
+
+  <div class="container">
+      <div class="Shope-Warenkorb">
+          <div class="detail-table">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th >Bestellnummer</th>
+                  <th >Datum</th>
+                  <th >Bezahlung</th>
+                  <th >Lieferung</th>
+                  <th >Status</th>
+                  <th ></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+
+                  {% for value in res%}
+                  <td data-label="Bestellnummer">{{value.order_number}}</td>
+                  <td data-label="Datum">{{value.creation_date}}</td>
+                  <td data-label="Bezahlung">{{value.payment_state_label}}</td>
+                  <td data-label="Lieferung">{{value.delivery_state_label}}</td>
+                  <td data-label="Status">{{value.order_state}}</td>
+                </tr>  
+                {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+  </div>
+
+{% include "profile_sidebar.html" %}
+
+{% endblock %}

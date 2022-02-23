@@ -1,0 +1,23 @@
+{% extends "page-checkout-profile.html" %}
+
+{% block content %}
+<div class="hero fixed_large">
+    <div class="herowrapper">
+      <div class="imagewrapper">
+        <div class="image"></div>
+      </div>
+    </div>
+    <div class="headline">
+      <div class="h1 red">
+                      <h1>Shop</h1>
+             </div>
+    </div>
+  </div>
+
+  {% include "menu.html" %}
+
+
+  <div class="container">
+    {% include 'product-div.html' %}
+  </div>
+  {% endblock %}

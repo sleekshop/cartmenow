@@ -1,0 +1,95 @@
+{% extends 'page-checkout-profile.html' %}
+{% block content %}
+<div class="hero fixed_large">
+    <div class="herowrapper">
+      <div class="imagewrapper">
+        <div class="image" ></div>
+      </div>
+    </div>
+    <div class="headline">
+      <div class="h1 red">
+                      <h1>Deine Daten</h1>
+             </div>
+    </div>
+  </div>
+  
+  <!--{% include "menu.html" %}-->
+
+  <div class="container">
+  {% if error_count>0 %}
+   <div class="alert alert-danger" role="alert">
+     {%trans%}Bitte alle mit * markierten Felder ausfüllen!{%endtrans%}
+        </div>
+  {% endif %}
+  <form method="POST" action="profile-userdata" class="form">
+  <div class="form-group {{error.email}}">
+  <label>E-Mail*</label>
+  <input type="text" name="email" class="form-control" value="{{ userdata.email }}">
+  </div>
+  <div class="form-group">
+  <label>{%trans%}Anrede{%endtrans%}</label>
+  <select name="salutation" class="form-control">
+  <option value="Mrs" {% if userdata.salutation=='Mrs' %}selected{%endif%}>{%trans%}Frau{%endtrans%}</option>
+  <option value="Mr" {% if userdata.salutation=='Mr' %}selected{%endif%}>{%trans%}Herr{%endtrans%}</option>
+  </select>
+  </div>
+  <div class="form-group {{error.firstname}}">
+  <label>{%trans%}Vorname{%endtrans%}*</label>
+  <input type="text" name="firstname" class="form-control" value="{{userdata.firstname}}">
+  </div>
+  <div class="form-group {{error.lastname}}">
+  <label>{%trans%}Nachname{%endtrans%}*</label>
+  <input type="text" name="lastname" class="form-control" value="{{userdata.lastname}}">
+  </div>
+  <div class="form-group">
+  <label>{%trans%}Unternehmen{%endtrans%}</label>
+  <input type="text" name="company" class="form-control" value="{{userdata.companyname}}">
+  </div>
+  <div class="form-group">
+  <label>{%trans%}Abteilung{%endtrans%}</label>
+  <input type="text" name="department" class="form-control" value="{{userdata.department}}">
+  </div>
+  <div class="form-group {{error.street}}">
+  <label>{%trans%}Straße{%endtrans%}*</label>
+  <input type="text" name="street" class="form-control" value="{{userdata.street}}">
+  </div>
+  <div class="form-group {{error.number}}">
+  <label>{%trans%}Nummer{%endtrans%}*</label>
+  <input type="text" name="number" class="form-control" value="{{userdata.number}}">
+  </div>
+  <div class="form-group {{error.zip}}">
+  <label>{%trans%}PLZ{%endtrans%}*</label>
+  <input type="text" name="zip" class="form-control" value="{{userdata.zip}}">
+  </div>
+  <div class="form-group {{error.city}}">
+  <label>{%trans%}Stadt{%endtrans%}*</label>
+  <input type="text" name="city" class="form-control" value="{{userdata.city}}">
+  </div>
+  <div class="form-group {{error.state}}">
+  <label>{%trans%}Staat{%endtrans%}*</label>
+  <input type="text" name="state" class="form-control" value="{{userdata.state}}">
+  </div>
+  <div class="form-group {{error.country}}">
+  <label>{%trans%}Land{%endtrans%}*</label>
+  <select name="country" class="form-control">
+  <option value="">{%trans%}Bitte auswählen{%endtrans%}</option>
+  <option value="DE" {% if userdata.country=='DE'%}selected{%endif%}>{%trans%}Deutschland{%endtrans%}</option>
+  </select>
+  <!-- <input type="text" name="country" class="form-control" value="{$userdata.country}"> -->
+  </div>
+  <div class="form-group">
+  <label>{%trans%}Notizen{%endtrans%}</label>
+  <textarea type="text" name="notes" class="form-control">{{userdata.notes}}</textarea>
+  </div>
+  
+  <div class="form-btn">
+    <button type="submit" class="btn login-btn-first">Speichern</button>
+  </div><br><br>
+
+  </form>
+
+  </div>
+
+{% include "profile_sidebar.html" %}
+
+{% endblock %}

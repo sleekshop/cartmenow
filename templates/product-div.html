@@ -1,0 +1,87 @@
+<div class="prouct-div">
+    {%if bundle!=1%}<a class="validmessage col-12 p-0 pb-4" href="/"> < Zurück</a>{%endif%}
+   <div class="col-md-4">
+        <img src="{{ res.attributes.img1.value }}" width="100%" class="thumb-pic lens-pic">
+{% if res.attributes.img2.width>0 %}<img src="{{ res.attributes.img2.value }}" width="32%" class="thumb-pic">{% endif %}
+{% if res.attributes.img3.width>0 %}<img src="{{ res.attributes.img3.value }}" width="32%" class="thumb-pic">{% endif %}
+{% if res.attributes.img4.width>0 %}<img src="{{ res.attributes.img4.value }}" width="32%" class="thumb-pic">{% endif %}
+      </div>
+      <div class="product-detail-box col-md-5">
+        <h2>{{ res.attributes.name.value }}</h2>
+        <p style="font-size:15px;color:#999;">{{res.attributes.short_description.value|raw}}</p><hr>
+        <div class="product-detail">
+          <ul>
+            {{ res.attributes.description.value|raw }}
+          </ul>
+        </div>
+        {#<div class="product-prise">
+          {{ res.attributes.price.value|number_format(2) }}€
+        </div>#}
+        <p>{{ res.attributes.grossentabelle.value|raw }}</p>
+      </div>
+
+      <div class="product-form-box col-md-3">
+        <div class="product-form">
+          <form method="post" action="add_to_cart">
+            {% if res.class=='colorprod' %}
+            <select class="form-control {%if bundle!=1%}color-ctl{%else%}color-ctl{{part}}{%endif%}" name="color" id="color-ctl" {%if bundle==1%}onchange="query_bundle_part({{part}},'color');"{%endif%}>
+              {% for key, value in res.colors %}
+            <option value="{{ value }}" {% if key==res.attributes.color.value %}selected{% endif %}>{{ key }}</option>
+              {% endfor %}
+            </select>
+            {% endif %}
+          {% if res.class=='sizeprod' %}
+          <select class="form-control {%if bundle!=1%}color-ctl{%else%}color-ctl{{part}}{%endif%}" name="color" id="color-ctl" {%if bundle==1%}onchange="query_bundle_part({{part}},'color');"{%endif%}>
+            {% for key, value in res.colors %}
+          <option value="{{ value }}" {% if key==res.attributes.color.value %}selected{% endif %}>{{ key }}</option>
+            {% endfor %}
+          </select>
+          <select class="form-control {%if bundle!=1%}size-ctl{%else%}size-ctl{{part}}{%endif%}" name="size" id="size-ctl" {%if bundle==1%}onchange="query_bundle_part({{part}},'size');"{%endif%}>
+            {% for key, value in res.sizes %}
+          <option value="{{ value }}" {% if value==res.id %}selected{% endif %}>{{ key }}</option>
+            {% endfor %}
+          </select>
+          {% endif %}
+          {% if res.class=='cityprod' %}
+          <select class="form-control {%if bundle!=1%}city-ctl{%else%}city-ctl{{part}}{%endif%}" name="city" id="city-ctl" {%if bundle==1%}onchange="query_bundle_part({{part}},'city');"{%endif%}>
+            {% for key, value in res.cities %}
+          <option value="{{ value }}" {% if key==res.attributes.city.value %}selected{% endif %}>{{ key }}</option>
+            {% endfor %}
+          </select>
+          <select class="form-control {%if bundle!=1%}color-ctl{%else%}color-ctl{{part}}{%endif%}" name="color" id="color-ctl" {%if bundle==1%}onchange="query_bundle_part({{part}},'color');"{%endif%}>
+            {% for key, value in res.colors %}
+          <option value="{{ value }}" {% if key==res.attributes.color.value %}selected{% endif %}>{{ key }}</option>
+            {% endfor %}
+          </select>
+          <select class="form-control {%if bundle!=1%}size-ctl{%else%}size-ctl{{part}}{%endif%}" name="size" id="size-ctl" {%if bundle==1%}onchange="query_bundle_part({{part}},'size');"{%endif%}>
+            {% for key, value in res.sizes %}
+          <option value="{{ value }}" {% if value==res.id %}selected{% endif %}>{{ key }}</option>
+            {% endfor %}
+          </select>
+          {% endif %}
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" name="quantity" value="1" placeholder="Menge" aria-label="" aria-describedby="button-addon1" {%if bundle==1%}disabled{%endif%}>
+          </div>
+          {%if bundle!=1%}<div class="product-prise">
+            {{ res.attributes.price.value|number_format(2) }}€<br><small>inkl. MwSt. zzgl. Versand</small>
+          </div>{%endif%}
+                <div class="form-btn">
+                <p class="ver-validate">{% if res.availability_label=='success' %}{%trans%}Verfügbar{%endtrans%}{% endif %}{% if  res.availability_label=='warning' %}{%trans%}Nur wenige Verfügbar{%endtrans%}{% endif %}{% if res.availability_label=='danger' %}{%trans%}Nicht verfügbar!{%endtrans%}{% endif %}</p>
+                {%if bundle!=1%}<button class="btn login-btn-second ml-auto" value="{%trans%}Add to cart{%endtrans%}">{%trans%}In den Warenkorb{%endtrans%}</button>{%endif%}
+                <input type="hidden" name="id_product{{part}}" value="{{ res.id }}" id="id_product{{part}}">
+                <input type="hidden" name="pic{{part}}" value="{{ res.attributes.img1.value }}">
+                <input type="hidden" name="price{{part}}" value="{{ res.attributes.price.value }}">
+                <input type="hidden" name="name{{part}}" value="{{ res.attributes.name.value }}">
+                <input type="hidden" name="short_description{{part}}" value="{{ res.attributes.short_description.value }}">
+                <input type="hidden" name="cart_txt{{part}}" value="{{ res.attributes.cart_txt.value }}">
+                <input type="hidden" name="size_txt" value="{{ res.attributes.size.value }}">
+                <input type="hidden" name="color_txt" value="{{ res.attributes.color.value }}">
+
+            </div>
+            </form>
+            <br>
+              {% if res.class=='sizeprod' or res.class=='cityprod' %}<p align="right"><img src="/img/cert.png" width="70%"></p>{%endif%}
+        </div>
+
+      </div>
+    </div>

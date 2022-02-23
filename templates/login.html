@@ -1,0 +1,24 @@
+{%extends "page.html"%}
+    {%block content%}
+    <div class="cartmenow-cart-overview">
+    <span class="cartmenow-headline">{%trans%}Login{%endtrans%}</span>
+    <br><br>
+    {% if error==1 %}
+    <div class="cartmenow-alert-danger">
+     <span class="cartmenow-alert-close" onclick="this.parentElement.style.display='none';">&times;</span>
+     {%trans%}Username and password does not match{%endtrans%}
+     </div>
+    {% endif %}
+      <div class="cartmenow-cart-item">
+        <input type="text" class="cartmenow-input" id="cartmenow-input-email" name="username" placeholder="E-Mail">
+      </div>
+      <div class="cartmenow-cart-item">
+        <input type="password" class="cartmenow-input" id="cartmenow-input-password" name="password" placeholder="{%trans%}Password{%endtrans%}">
+      </div>
+      <div class="cartmenow-cart-item">
+        <input type="hidden" name="profile" value="{{profile}}">
+        <button type="button" class="cartmenow-clickable cartmenow-action-btn" onclick="loginUser();">{%trans%}Login{%endtrans%}</button>
+      </div>
+    </div>
+    <br><br><br>
+{%endblock%}

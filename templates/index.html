@@ -1,0 +1,122 @@
+{% extends "page.html" %}
+
+{% block content %}
+<div class="hero fixed_large2">
+		<div class="herowrapper">
+			<div class="imagewrapper">
+        <div class="image" style="background-image: url({{res.contents.byclass.teaser_pic.0.attributes.img.value}}); background-position: center center">
+                       </div>
+			</div>
+		</div>
+		<div class="headline">
+			<div class="h1 red">
+                      <h1>{{res.contents.byclass.teaser_pic.0.attributes.headline.value}}</h1>
+             </div>
+		</div>
+	</div>
+{#<div class="hero slider">
+    <div class="herowrapper">
+      <div class="imageslider">
+         <div class="sliderwrapper slider slider-for">
+           {% for value in res.contents.byclass.teaser_pic %}
+           <div>
+                    <div class="slide">
+                     <div class="image" style="background-image: url({{value.attributes.img.value }}); background-position: center center">
+                       </div>
+                        </div>
+           </div>
+          {% endfor %}
+          <div>
+                   <div class="slide">
+                    <div class="image" style="background-image: url(images/AMD_Header.jpg); background-position: center center">
+                      </div>
+                       </div>
+          </div>
+          <div>
+              <div class="slide"><div class="image" style="background-image: url(images/Unbenannt-1-14.jpg); background-position: center center">
+                      </div> </div>
+          </div>
+          <div>
+              <div class="slide"><div class="image" style="background-image: url(images/amd-home-stage-management.jpg); background-position: center center">
+              </div> </div>
+          </div>
+          <div>
+              <div class="slide"><div class="image" style="background-image: url(images/amd-home-stage-Design.jpg); background-position: center center">
+              </div> </div>
+          </div>
+
+
+
+      </div>
+      <div class=" headlines  slider-nav">
+
+    <div class="h1 home_banner_menu" data-slide="0">
+            <a href="JavaScript:void(0);" data-before="Mode"><h1>Mode</h1></a>
+          </div>
+                  <div class="h1 home_banner_menu" data-slide="1">
+            <a href="JavaScript:void(0);" data-before="Medien"><h1>Medien</h1></a>
+          </div>
+                  <div class="h1 active home_banner_menu" data-slide="2">
+            <a href="JavaScript:void(0);" data-before="Management"><h1>Management</h1></a>
+          </div>
+                  <div class="h1 loadtext home_banner_menu" data-slide="3">
+            <a href="JavaScript:void(0);" data-before="Design"><h1>Design</h1></a>
+          </div>
+  </div>
+
+  </div>
+    </div>
+  </div>#}
+
+	<div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        {% for value in res.contents.byclass.teaser_txt %}
+         <h2 align="center">{{value.attributes.headline1.value}}</h2>
+         <h4 align="center">{{value.attributes.headline2.value}}</h4>
+         {{value.attributes.content.value|raw}}
+        {% endfor %}
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+
+
+
+{% include "menu.html"%}
+
+
+<div class="container">
+	<div class="row">
+		{% for value in res.contents.byclass.contentblock %}
+		<div class="col-md-6">
+			 <a href="{{value.attributes.hyperlink.value}}"><img src="{{value.attributes.img.value}}" width="100%"></a>
+			 <br><br>
+			</div>
+
+			{% endfor %}
+		</div>
+		<br><br>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				 <h2 align="center">Unsere neuesten Artikel</h2>
+				 <br><br>
+				</div>
+			</div>
+		</div>
+
+{% include "product_listing.html"%}
+
+<div class="container">
+  <div class="row"><div class="col-md-12">
+      {% for value in res.contents.byclass.teaser_pic_bottom %}
+       <p align="center"><img src="{{value.attributes.img.value}}" width="100%"></p>
+      {% endfor %}
+    </div></div>
+  </div>
+
+  {% endblock %}

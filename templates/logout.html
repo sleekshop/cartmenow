@@ -1,0 +1,26 @@
+{% extends 'page.html' %}
+{% block content %}
+<div class="hero fixed_large">
+    <div class="herowrapper">
+      <div class="imagewrapper">
+        <div class="image" ></div>
+      </div>
+    </div>
+    <div class="headline">
+      <div class="h1 red">
+                      <h1>Bestellung</h1>
+             </div>
+    </div>
+  </div>
+
+  {% include "menu.html" %}
+
+  <div class="container">
+  	<div class="col-md-12">
+	<h1>{%trans%}Sie haben sich erfolgreich abgemeldet!{%endtrans%}</h1>
+	<br><br>
+	<a href="/" class="btn login-btn-second ml-auto">Zur&uuml;ck zum Shop</a>
+	</div>
+  </div><br><br>
+
+  {% endblock %}
